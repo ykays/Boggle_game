@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Boggle Game</h1>
+<form action="/check-word" method="POST">
+    <input type="text" placeholder="Enter your guess" name="input">
+    <button id="submit">Submit</button>
+</form>
+<ul id="result">
+</ul>
+<div id="score">
+    <p><span id="already-guessed"></span> You score is: <span id="score-span"></span></p>
+</div>
+<div id="timer">
+    <p>Your time left: <span id="time-left"></span>
+</div>
+<div>
+    <table>
+        <thead>
+        </thead>
+        <tbody>
+            {% for row in session['board'] %}
+            <tr>
+                {% for element in row %}
+                <td>{{element}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>  
+</div>
+<section>
+    <p>You have played: {{session['count']}} times</p>
+    <p>Your highest score is: <span id="highest">{{session['highscore']}}</span></p>
+</section>
+{% endblock %}
